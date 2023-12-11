@@ -13,7 +13,7 @@ const ArticleList = () => {
     }, [])
 
 
-return (<section className="articles-container grid">
+return (<section className="articles-container">
 {articles.map((article) => {
     return (
         <Link key={article.article_id} className="article-link">
