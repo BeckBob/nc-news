@@ -1,7 +1,78 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: 1100px;
   padding: 2rem;
   text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
+.article-card {
+	display: flex;
+  justify-content: center;
+	flex-direction: column;
+	border: 1px solid rgb(211, 211, 255);
+	margin: 5vw;
+	max-width: fit-content;
+	background-color: rgb(118, 125, 155);
+	color: rgb(0, 0, 0);
+}
+.article-img {
+	width: 80%;
+	margin: auto;
+  border: 5px solid black;
+}
+.article-link {
+	text-decoration: none;
+}
+
+
+body {
+	background-color: rgb(0, 0, 0);
+	margin: 0 15px;
+}
+
+h1 {
+	background-color: rgb(74, 80, 167);
+  font-size: 10vw;
+	padding: 10px;
+	margin: 0 -15px 15px -15px;
+  width: 50vw;
+  border: 2px solid rgb(148, 61, 230);
+}
+
+nav {
+	display: flex;
+	border: 2px solid rgb(132, 185, 255);
+	border-radius: 20px;
+	justify-content: space-evenly;
+	background-color: rgb(95, 137, 255);
+}
+
+.nav-text{
+  font-size: 5vw;
+  text-decoration: none;
+  color: rgb(28, 28, 78);
+}
+
+.articles-container{
+  margin-top: 0vw;
+  width: 60vw;
+}
+
+.header{
+  display: flex;
+  justify-content: center;
+}
+
+.article-title{
+
+  background-color: rgb(181, 201, 255);
+  width: 50vw;
+  padding: 10px;
+  align-self: center;
+}
+
+.article-list{
+  display: flex;
+  justify-content: center;
+  
+}
