@@ -111,10 +111,30 @@ nav {
 .single-article-body{
   padding: 10px;
   box-shadow: 10px 10px 20px black;
-  font-size: 2vw;
+  font-size: 3vw;
   margin: 20px;
   background-color: aliceblue;
   color: black;
   display: flex;
   
+}
+
+.comment-box{
+  background-color: rgb(132, 185, 255);
+  color: black;
+  padding: 3px;
+}
+
+.comment-body{
+  background-color: rgb(95, 137, 255);
+  padding: 3px;
+  margin: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border: 2px solid rgb(0, 0, 0);
+  font-size: 2vw;
+}
+
+.comment-info{
+  font-weight: bold;
 }
