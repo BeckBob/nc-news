@@ -5,18 +5,23 @@ import ArticleCard from "./articleCard";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(false) 
     useEffect(() => {
+        setIsLoading(true)
 		getAllArticles().then(({body}) => {
-            console.log(body)
 			setArticles(body);
+            setIsLoading(false)
 		});
     }, [])
 
-
+    if (isLoading){
+        return <section className="loading-screen">loading...</section>
+      }
+      else
 return (<section className="articles-container">
 {articles.map((article) => {
     return (
-        <Link key={article.article_id} className="article-link">
+        <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
             <ArticleCard key={article.article_id} article={article} />
         </Link>
     );

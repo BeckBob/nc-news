@@ -8,4 +8,11 @@ const getAllArticles = () => {
         return response.data})
 }
 
+export const getArticleById = (article_id) => {
+    return api.get(`/api/articles/${article_id}`).then((response) =>
+    {
+        return response.data
+    })
+}
+
 export default getAllArticles
