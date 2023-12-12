@@ -5,14 +5,19 @@ import ArticleCard from "./articleCard";
 
 const ArticleList = () => {
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(false) 
     useEffect(() => {
+        setIsLoading(true)
 		getAllArticles().then(({body}) => {
-            console.log(body)
 			setArticles(body);
+            setIsLoading(false)
 		});
     }, [])
 
-
+    if (isLoading){
+        return <section className="loading-screen">loading...</section>
+      }
+      else
 return (<section className="articles-container">
 {articles.map((article) => {
     return (

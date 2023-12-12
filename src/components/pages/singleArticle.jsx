@@ -5,18 +5,22 @@ import { useParams } from "react-router-dom";
 const SingleArticle = () => {
 	const [article, setArticle] = useState({});
 	const { article_id } = useParams();
-  const [isLoading, setIsLoading] = useState(false) 
-  const day = article.created_at.slice(8, 10)
-  const month = article.created_at.slice(5,7)
-  const year = article.created_at.slice(0, 4)
-  console.log(article)
+  const [isLoading, setIsLoading] = useState(false); 
+  const [date, setDate] = useState("");
+
 	useEffect(() => {
     setIsLoading(true)
 		getArticleById(article_id).then((data) => {
 			setArticle(data);
       setIsLoading(false)
+      setDate(data.created_at)
+     
+
 		});
 	}, []);
+  const day = date.slice(8, 10)
+  const month = date.slice(5,7)
+  const year = date.slice(0, 4)
   if (isLoading){
     return <section className="loading-screen">loading...</section>
   }
