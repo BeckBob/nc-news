@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getArticleById } from "../../utils";
 import { useParams } from "react-router-dom";
+import Comments from "../comments"; 
 
 const SingleArticle = () => {
 	const [article, setArticle] = useState({});
@@ -26,6 +27,7 @@ const SingleArticle = () => {
   }
   else
 	return (
+    <div>
 		<div className="single-article-card">
 			<section className="single-article-header"><h3 className="single-article-title">{article.title}</h3>
 			<h4 className="single-article-author">Author: {article.author}</h4></section>
@@ -33,12 +35,14 @@ const SingleArticle = () => {
         
             <p className="single-article-body"> <br />
                 {article.body}  </p> 
-                <p> Topic: {article.topic} <br />
-                Comment Count: {article.comment_count} <br/>
-                Date Created: {day}/{month}/{year} <br />
-                Votes: {article.votes}</p>
+                <p> This article is about {article.topic} <br />
+                {article.comment_count} comments <br/>
+                Posted on {day}/{month}/{year}  <br />
+                {article.votes} votes</p>
 			
 		</div>
+      <Comments key={article.article_id} article_id={article_id}/>
+    </div>
 	);
 };
 
