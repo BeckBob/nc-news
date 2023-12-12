@@ -16,9 +16,12 @@ const Comments = ({article_id}) => {
         if (isLoading){
             return <section className="loading-screen">loading...</section>
           }
+        if (comments.length === 0){
+            return <p>No Comments</p>
+        }
           else
     return  (<section className="comment-list">
-            <p>COMMENTS</p>
+            <p>Comments</p>
             {comments.map((comment) => {
             return (
                 <ul key={comment.comment_id} className="comment-box">
