@@ -13,13 +13,13 @@ const Comments = ({article_id}) => {
           setIsLoading(false)
             });
         },[])
-
+      
         if (isLoading){
             return <section className="loading-screen">loading...</section>
           }
         if (comments.length === 0){
             return <section>
-                <AddComment key={comments.length} setComments={setComments}/>
+                <AddComment key={comments.length} setComments={setComments} article_id={article_id}/>
                 <p>No Comments</p>
                 </section>
         }
