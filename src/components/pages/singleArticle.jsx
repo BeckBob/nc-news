@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getArticleById, addLikeToArticle } from "../../utils";
+import { getArticleById, changeArticleVotes } from "../../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../comments"; 
 
@@ -8,7 +8,8 @@ const SingleArticle = () => {
 	const { article_id } = useParams();
   const [isLoading, setIsLoading] = useState(false); 
   const [date, setDate] = useState("");
-  const [likes, setLikes] = useState(0)
+  const [likes, setLikes] = useState(0);
+  const [errorMessage, setErrorMessage] = useState('');
 
 	useEffect(() => {
     setIsLoading(true)
@@ -30,12 +31,43 @@ const SingleArticle = () => {
     return updatedArticle})
     
     
-     addLikeToArticle(article_id).catch((err) => {
-      console.log(err.response.data);
+     changeArticleVotes(article_id, 1).catch((err) => {
+      if (err) {
+      setErrorMessage('Votes button not working!');
+
+      setArticle((currArticle) => {
+        const updatedArticle = {...currArticle, votes: currArticle.votes + 1} 
+      setLikes(likes -1)
+      return updatedArticle})
+      }
     })
      
     
      }
+
+     const handleClickDown = (article_id) => {
+   
+      setArticle((currArticle) => {
+        const updatedArticle = {...currArticle, votes: currArticle.votes + 1} 
+      setLikes(likes -1)
+      return updatedArticle})
+      
+      
+       changeArticleVotes(article_id, -1).catch((err) => {
+        if (err) {
+        setErrorMessage('Votes button not working!');
+        setArticle((currArticle) => {
+          
+
+          const updatedArticle = {...currArticle, votes: currArticle.votes + 1} 
+        setLikes(likes +1)
+        return updatedArticle})
+        }
+       ;
+      })
+       
+      
+       }
 
 
   const day = date.slice(8, 10)
@@ -43,6 +75,9 @@ const SingleArticle = () => {
   const year = date.slice(0, 4)
   if (isLoading){
     return <section className="loading-screen">loading...</section>
+  }
+  if(errorMessage){
+    return <p>{errorMessage}</p>
   }
   else
 	return (
@@ -57,8 +92,11 @@ const SingleArticle = () => {
                 <p> This article is about {article.topic} <br />
                 {article.comment_count} comments <br/>
                 Posted on {day}/{month}/{year}  <br />
-                <button className="like-button" onClick={() => handleClick(article_id)}>{likes}👍</button> </p>
-			
+                <div className="votes-box">{likes}
+                <button className="vote-button" onClick={() => handleClick(article_id)}>👍</button> 
+                <button className="vote-button" onClick={() => handleClickDown(article_id)}>👎</button> 
+                </div></p>
+                
 		</div>
       <Comments key={article.article_id} article_id={article_id}/>
     </div>

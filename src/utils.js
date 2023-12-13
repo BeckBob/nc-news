@@ -22,13 +22,13 @@ export const getCommentsForArticle = (article_id) => {
     })
 }
 
-export const addLikeToArticle = (article_id) => {
+export const changeArticleVotes = (article_id, number) => {
     const patchBody = {
-        inc_votes: 1
+        inc_votes: number
     }
     return api.patch(`/api/articles/${article_id}`, patchBody).then((response) => {
         return response.data
 
-    }).catch((err) => {console.log(err)})
+    }).catch((err) => {return err.response.data})
 }
 export default getAllArticles
