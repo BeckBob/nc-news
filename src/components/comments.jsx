@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getCommentsForArticle } from "../utils";
 import CommentCard from "./commentCard";
+import AddComment from "./addComment";
 
 const Comments = ({article_id}) => {
     const [comments, setComments] = useState([])
@@ -17,11 +18,15 @@ const Comments = ({article_id}) => {
             return <section className="loading-screen">loading...</section>
           }
         if (comments.length === 0){
-            return <p>No Comments</p>
+            return <section>
+                <AddComment key={comments.length} setComments={setComments}/>
+                <p>No Comments</p>
+                </section>
         }
           else
     return  (<section className="comment-list">
             <p>Comments</p>
+            <AddComment key={comments.length} setComments={setComments} article_id={article_id}/>
             {comments.map((comment) => {
             return (
                 <ul key={comment.comment_id} className="comment-box">

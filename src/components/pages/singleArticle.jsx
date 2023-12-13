@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticleById, changeArticleVotes } from "../../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../comments"; 
+import AddComment from "../addComment";
 
 const SingleArticle = () => {
 	const [article, setArticle] = useState({});
@@ -92,13 +93,15 @@ const SingleArticle = () => {
                 <p> This article is about {article.topic} <br />
                 {article.comment_count} comments <br/>
                 Posted on {day}/{month}/{year}  <br />
-                <div className="votes-box">{likes}
+                {likes }
                 <button className="vote-button" onClick={() => handleClick(article_id)}>👍</button> 
                 <button className="vote-button" onClick={() => handleClickDown(article_id)}>👎</button> 
-                </div></p>
+                </p>
                 
 		</div>
+    <div className="comments-box">
       <Comments key={article.article_id} article_id={article_id}/>
+      </div>
     </div>
 	);
 };

@@ -31,4 +31,12 @@ export const changeArticleVotes = (article_id, number) => {
 
     }).catch((err) => {return err.response.data})
 }
+
+export const addCommentToArticle = (article_id, newComment) => {
+
+    return api.patch(`/api/articles/${article_id}/comments`, newComment).then((response) => {
+        return response.data
+
+    }).catch((err) => {return err.response.data})
+}
 export default getAllArticles
