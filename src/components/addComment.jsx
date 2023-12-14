@@ -21,27 +21,37 @@ const AddComment = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        props.setComments((currComments) => {
+         if (input.length === 0) {
+            setErrorMessage("no comment")
+            props.setComments((currComments) => {
             
-            if (input.length === 0) {
-                return[...currComments]
+            return [...currComments]
+         })
             }
+            else {
+                console.log(props.comments)
+                props.setComments((currComments) => {
+                    return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
+                        created_at: new Date().toISOString()}, ...currComments]
+                })
+            }
+            console.log(props.comments)
+        // props.setComments((currComments) => {
+            
 
+        //     else {
+        //     return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
+        //     created_at: new Date().toISOString()}, ...currComments]}
+        // })   
             
-            return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
-            created_at: new Date().toISOString()}, ...currComments]
-        })   
-            
-           
+                console.log(errorMessage)
             addCommentToArticle(article_id, input).catch((err) => {
-                if (err) {
-                    const errorMsg = err.response
-                    console.log(errorMsg)
-                    updateError(errorMsg)
                 
-               
-    
-        }
+                    const errorMsg = err.response
+                
+                    setErrorMessage("hello")
+                    console.log(errorMessage)
+                
    
         
 

@@ -28,7 +28,7 @@ const Comments = ({article_id}) => {
           else
     return  (<section className="comment-list">
             <p>Comments</p>
-            <AddComment key={comments.length} setComments={setComments} article_id={article_id}/>
+            <AddComment key={comments.length} setComments={setComments} comments={comments} article_id={article_id}/>
             {comments.map((comment) => {
             return (
                 <ul key={comment.comment_id} className="comment-box">
