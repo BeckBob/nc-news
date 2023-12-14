@@ -6,6 +6,8 @@ import { Route, Routes } from "react-router-dom";
 import ArticleList from './components/articleList';
 import SingleArticle from './components/pages/singleArticle';
 
+
+
 function App() {
   return (
 <div>
@@ -18,6 +20,7 @@ function App() {
       <Route path="/articles/:article_id" element={<SingleArticle />} />
       </Routes>
       </div>
+
   )
 }
 

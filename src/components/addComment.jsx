@@ -4,13 +4,18 @@ import { addCommentToArticle } from "../utils";
 const AddComment = (props) => {
 
     const [input, setInput] = useState("")
-    const [date, setDate] = useState(new Date().toISOString());
     const {article_id} = props;
     const [errorMessage, setErrorMessage] = useState("")
+    
 
     const updateInput = (event) => {
         setInput(event.target.value)
     } 
+    
+    const updateError = (error) => {
+        setErrorMessage(error)
+        setInput("something")
+    }
 
 
     const handleSubmit = (event) => {
@@ -22,23 +27,29 @@ const AddComment = (props) => {
                 return[...currComments]
             }
 
-            setDate(new Date().toISOString())
             
-            return[...currComments, {comment_id: currComments.length + 1, body: input, votes: 0, author: "rogersop", 
-            created_at: date}]
+            return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
+            created_at: new Date().toISOString()}, ...currComments]
         })   
             
            
             addCommentToArticle(article_id, input).catch((err) => {
                 if (err) {
-                setErrorMessage(err);
+                    const errorMsg = err.response
+                    console.log(errorMsg)
+                    updateError(errorMsg)
+                
+               
+    
+        }
+   
         
 
-        }
     })
-    }
 
-    
+    }
+    // console.log(input)
+    console.log(errorMessage)
 
     return  (
     
@@ -49,8 +60,9 @@ const AddComment = (props) => {
         id='comment-input'
         value={input} 
         onChange={updateInput}/>  
-        {input.length > 50 ? <p> exceeded character limit!
-        </p>: <p>{`${50 - input.length} characters remaining`}</p> }  
+        {input.length > 50 ? <Error message ="exceeded character limit!"/>
+        : <p>{`${50 - input.length} characters remaining`}</p> } 
+        {errorMessage ? <Error message={errorMessage}/>: null} 
     </label>
     <button disabled={input.length > 50 }>Add Comment</button> 
 </form>

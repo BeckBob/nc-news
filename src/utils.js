@@ -39,8 +39,18 @@ export const addCommentToArticle = (article_id, input) => {
     }
 
     return api.post(`/api/articles/${article_id}/comments`, patchBody).then((response) => {
+        if(!response.ok) {return Promise.reject({ status: response.status, message: response.statusText})}
+        
         return response.data
 
-    }).catch((err) => {return err.response.data})
+    })
+}
+
+export const deleteCommentFromDB = (comment_id) => {
+    return api.delete(`/api/comments/${comment_id}`).then((response) => {
+        if(!response.ok) {return Promise.reject({ status: response.status, message: response.statusText})}
+
+        return console.log("deleted comment")
+    })
 }
 export default getAllArticles

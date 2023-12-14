@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getCommentsForArticle } from "../utils";
 import CommentCard from "./commentCard";
 import AddComment from "./addComment";
+import DeleteComment from "./deleteComment";
 
 const Comments = ({article_id}) => {
     const [comments, setComments] = useState([])
@@ -13,6 +14,7 @@ const Comments = ({article_id}) => {
           setIsLoading(false)
             });
         },[])
+        console.log(comments)
       
         if (isLoading){
             return <section className="loading-screen">loading...</section>
@@ -31,6 +33,7 @@ const Comments = ({article_id}) => {
             return (
                 <ul key={comment.comment_id} className="comment-box">
                     <CommentCard key={comment.comment_id} comment={comment} />
+                    <DeleteComment comment={comment} setComments={setComments} />
                     </ul>
     );
 })}
