@@ -32,11 +32,10 @@ export const changeArticleVotes = (article_id, number) => {
     }).catch((err) => {return err.response.data})
 }
 
-export const addCommentToArticle = (article_id, newComment) => {
-    // console.log(newComment)
+export const addCommentToArticle = (article_id, input) => {
     const patchBody = {
-        username: newComment.body,
-        author: newComment.author,
+        username: "weegembump",
+        body: input,
     }
 
     return api.post(`/api/articles/${article_id}/comments`, patchBody).then((response) => {
