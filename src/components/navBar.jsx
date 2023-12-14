@@ -21,7 +21,7 @@ const Navbar = () => {
         </nav>
         <nav>
             {topics.map((topic) => {
-                return <Link to={`/articles/${topic.slug}`}key={topic.slug} className="topic-link">{topic.slug}</Link>
+                return <Link to={`/topics/${topic.slug}`}key={topic.slug} className="topic-link">{topic.slug}</Link>
             }) }
             
         </nav>
