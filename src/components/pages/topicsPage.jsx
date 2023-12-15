@@ -8,7 +8,6 @@ const TopicsPage = () => {
     return (<div><h2 className="topic-header">{topic}</h2>
             <ArticleList key={topic} topic={topic}/>
             </div>
-    
     )
 }
 
