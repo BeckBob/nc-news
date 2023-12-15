@@ -3,7 +3,7 @@ import { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import ArticleCard from "./articleCard";
 
-const ArticleList = () => {
+const ArticleList = (props) => {
     const [articles, setArticles] = useState([])
     const [isLoading, setIsLoading] = useState(false) 
     useEffect(() => {
@@ -17,6 +17,15 @@ const ArticleList = () => {
     if (isLoading){
         return <section className="loading-screen">loading...</section>
       }
+    if (props.topic){
+        return (<section className="articles-container">
+        {articles.map((article) => {if (article.topic === props.topic)
+            return (
+                <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
+                    <ArticleCard key={article.article_id} article={article} />
+                </Link> 
+    )})}
+                </section>)}
       else
 return (<section className="articles-container">
 {articles.map((article) => {

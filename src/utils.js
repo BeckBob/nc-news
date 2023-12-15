@@ -31,4 +31,14 @@ export const changeArticleVotes = (article_id, number) => {
 
     }).catch((err) => {return err.response.data})
 }
+
+
+export const getAllTopics = () => {
+    return api.get("/api/topics").then((response) => 
+    {
+        return response.data})
+}
+
+
 export default getAllArticles
+
