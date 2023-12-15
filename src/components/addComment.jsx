@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { addCommentToArticle } from "../utils";
+import Error from "./error.jsx"
 
 const AddComment = (props) => {
 
@@ -11,31 +12,25 @@ const AddComment = (props) => {
     const updateInput = (event) => {
         setInput(event.target.value)
     } 
-    
-    const updateError = (error) => {
-        setErrorMessage(error)
-        setInput("something")
-    }
-
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
          if (input.length === 0) {
-            setErrorMessage("no comment")
+            setErrorMessage("nothing in comment box!")
             props.setComments((currComments) => {
             
             return [...currComments]
          })
             }
             else {
-                console.log(props.comments)
+                
                 props.setComments((currComments) => {
                     return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
                         created_at: new Date().toISOString()}, ...currComments]
                 })
-            }
-            console.log(props.comments)
+            
+            
         // props.setComments((currComments) => {
             
 
@@ -44,21 +39,15 @@ const AddComment = (props) => {
         //     created_at: new Date().toISOString()}, ...currComments]}
         // })   
             
-                console.log(errorMessage)
+               
             addCommentToArticle(article_id, input).catch((err) => {
-                
-                    const errorMsg = err.response
-                
-                    setErrorMessage("hello")
-                    console.log(errorMessage)
-                
-   
-        
+                    console.log(err)
+                    setErrorMessage(err)     
 
     })
-
+    
     }
-    // console.log(input)
+    }
     console.log(errorMessage)
 
     return  (
@@ -70,7 +59,7 @@ const AddComment = (props) => {
         id='comment-input'
         value={input} 
         onChange={updateInput}/>  
-        {input.length > 50 ? <Error message ="exceeded character limit!"/>
+        {input.length > 50 ? <Error message={"exceeded character limit!"}/>
         : <p>{`${50 - input.length} characters remaining`}</p> } 
         {errorMessage ? <Error message={errorMessage}/>: null} 
     </label>

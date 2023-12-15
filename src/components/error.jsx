@@ -3,7 +3,7 @@ const Error = (props) => {
     const {message} = props
     return (
         <div className="error">
-            <h2>error!</h2>
+            <p>error!</p>
             <p>{message}</p>
 
         </div>

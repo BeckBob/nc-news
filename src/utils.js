@@ -34,15 +34,16 @@ export const changeArticleVotes = (article_id, number) => {
 
 export const addCommentToArticle = (article_id, input) => {
     const patchBody = {
-        username: "weegembump",
+        username: "a",
         body: input,
     }
 
     return api.post(`/api/articles/${article_id}/comments`, patchBody).then((response) => {
-        if(!response.ok) {return Promise.reject({ status: response.status, message: response.statusText})}
-        
+
         return response.data
 
+    }).catch((err) => {
+        return Promise.reject(err.response.data.msg)
     })
 }
 

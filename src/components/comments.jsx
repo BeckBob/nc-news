@@ -14,7 +14,6 @@ const Comments = ({article_id}) => {
           setIsLoading(false)
             });
         },[])
-        console.log(comments)
       
         if (isLoading){
             return <section className="loading-screen">loading...</section>
