@@ -5,7 +5,7 @@ const TopicsPage = () => {
     const { topic } = useParams();
 
 
-    return (<div><h2 className="topic-header">{topic}</h2>
+    return (<div>
             <ArticleList key={topic} topic={topic}/>
             </div>
     )

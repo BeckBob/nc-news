@@ -2,27 +2,30 @@ import { useEffect, useState } from "react";
 import { getArticleById, changeArticleVotes } from "../../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../comments"; 
+import RouteError from "../../routeError";
 
 const SingleArticle = () => {
 	const [article, setArticle] = useState({});
 	const { article_id } = useParams();
-  const [isLoading, setIsLoading] = useState(false); 
+  const [isLoading, setIsLoading] = useState(true); 
   const [date, setDate] = useState("");
   const [likes, setLikes] = useState(0);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState(null);
 
 	useEffect(() => {
-    setIsLoading(true)
 		getArticleById(article_id).then((data) => {
-			setArticle(data);
-      setIsLoading(false)
+      
       setDate(data.created_at)
       setLikes(data.votes)
-     
-
-		});
+      setIsLoading(false)
+      setArticle(data)
+      }).catch((err) => {
+        setErrorMessage(err.response.data.msg)
+        setIsLoading(false)
+      });
 	}, []);
 
+  console.log(errorMessage)
   const handleClick = (article_id) => {
    
     setArticle((currArticle) => {
@@ -69,15 +72,16 @@ const SingleArticle = () => {
       
        }
 
-
   const day = date.slice(8, 10)
   const month = date.slice(5,7)
   const year = date.slice(0, 4)
+
+  
   if (isLoading){
     return <section className="loading-screen">loading...</section>
   }
-  if(errorMessage){
-    return <p>{errorMessage}</p>
+  else if(errorMessage){
+    return <RouteError message={errorMessage}/>
   }
   else
 	return (
@@ -91,11 +95,11 @@ const SingleArticle = () => {
                 {article.body}  </p> 
                 <p> This article is about {article.topic} <br />
                 {article.comment_count} comments <br/>
-                Posted on {day}/{month}/{year}  <br />
+                Posted on {day}/{month}/{year}  <br /> </p>
                 <div className="votes-box">{likes}
                 <button className="vote-button" onClick={() => handleClick(article_id)}>👍</button> 
                 <button className="vote-button" onClick={() => handleClickDown(article_id)}>👎</button> 
-                </div></p>
+                </div>
                 
 		</div>
       <Comments key={article.article_id} article_id={article_id}/>

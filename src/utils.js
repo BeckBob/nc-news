@@ -1,5 +1,8 @@
 import axios from "axios";
 
+
+
+
 const api = axios.create({baseURL:"https://breaddit.onrender.com"})
 
 const getAllArticles = () => {
@@ -10,10 +13,15 @@ const getAllArticles = () => {
 
 export const getArticleById = (article_id) => {
     return api.get(`/api/articles/${article_id}`).then((response) =>
-    {
+    {        
+        
         return response.data
+    }).catch((err) => {
+        console.log(err)
+        return Promise.reject(err)
     })
-}
+    }
+
 
 export const getCommentsForArticle = (article_id) => {
     return api.get(`/api/articles/${article_id}/comments`).then((response) =>
