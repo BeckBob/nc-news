@@ -13,6 +13,10 @@ const AddComment = (props) => {
         setInput(event.target.value)
     } 
 
+    useEffect(() => {
+        console.log(errorMessage, "<----")
+    }, [errorMessage])
+
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -24,32 +28,29 @@ const AddComment = (props) => {
          })
             }
             else {
+                   
+            addCommentToArticle(article_id, input).catch((err) => {
+                const newErrorMessage = err.msg
+                
+                console.log(newErrorMessage)
+                setErrorMessage(err.msg)
+                
+                
+})
+            
+
                 
                 props.setComments((currComments) => {
+                    console.log(errorMessage)
                     return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
                         created_at: new Date().toISOString()}, ...currComments]
                 })
+        
             
-            
-        // props.setComments((currComments) => {
-            
-
-        //     else {
-        //     return[{comment_id: currComments.length + 1, body: input, votes: 0, author: "weegembump", 
-        //     created_at: new Date().toISOString()}, ...currComments]}
-        // })   
-            
-               
-            addCommentToArticle(article_id, input).catch((err) => {
-                    console.log(err)
-                    setErrorMessage(err)     
-
-    })
+    }
+    setInput("")
+    }
     
-    }
-    }
-    console.log(errorMessage)
-
     return  (
     
     <form onSubmit = {handleSubmit}>  

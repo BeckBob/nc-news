@@ -43,7 +43,7 @@ export const addCommentToArticle = (article_id, input) => {
         return response.data
 
     }).catch((err) => {
-        return Promise.reject(err.response.data.msg)
+        return Promise.reject(err.response.data)
     })
 }
 

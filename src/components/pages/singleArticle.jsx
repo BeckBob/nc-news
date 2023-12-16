@@ -61,7 +61,7 @@ const SingleArticle = () => {
           
 
           const updatedArticle = {...currArticle, votes: currArticle.votes + 1} 
-        setLikes(likes +1)
+        setLikes(likes => likes +1)
         return updatedArticle})
         }
        ;
