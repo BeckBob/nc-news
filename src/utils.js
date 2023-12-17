@@ -34,7 +34,7 @@ export const changeArticleVotes = (article_id, number) => {
 
 export const addCommentToArticle = (article_id, input) => {
     const patchBody = {
-        username: "a",
+        username: "weegembump",
         body: input,
     }
 
