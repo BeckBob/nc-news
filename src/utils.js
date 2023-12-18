@@ -41,12 +41,3 @@ export const changeArticleVotes = (article_id, number) => {
 }
 
 
-export const getAllTopics = () => {
-    return api.get("/api/topics").then((response) => 
-    {
-        return response.data})
-}
-
-
-export default getAllArticles
-

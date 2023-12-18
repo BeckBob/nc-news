@@ -8,6 +8,8 @@ import SingleArticle from './components/pages/singleArticle';
 import TopicsPage from './components/pages/topicsPage';
 import RouteError from './routeError';
 
+
+
 function App() {
   return (
 <div>
@@ -22,6 +24,7 @@ function App() {
       <Route path='/*' element={<RouteError message={"Path doesn't exist!"}/>} />
       </Routes>
       </div>
+
   )
 }
 

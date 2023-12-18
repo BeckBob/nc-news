@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticleById, changeArticleVotes } from "../../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../comments"; 
-import RouteError from "../../routeError";
+
 
 const SingleArticle = () => {
 	const [article, setArticle] = useState({});
@@ -63,7 +63,7 @@ const SingleArticle = () => {
           
 
           const updatedArticle = {...currArticle, votes: currArticle.votes + 1} 
-        setLikes(likes +1)
+        setLikes(likes => likes +1)
         return updatedArticle})
         }
        ;
@@ -95,14 +95,12 @@ const SingleArticle = () => {
                 {article.body}  </p> 
                 <p> This article is about {article.topic} <br />
                 {article.comment_count} comments <br/>
-                Posted on {day}/{month}/{year}  <br /> </p>
-                <div className="votes-box">{likes}
-                <button className="vote-button" onClick={() => handleClick(article_id)}>👍</button> 
-                <button className="vote-button" onClick={() => handleClickDown(article_id)}>👎</button> 
-                </div>
+
                 
 		</div>
+    <div className="comments-box">
       <Comments key={article.article_id} article_id={article_id}/>
+      </div>
     </div>
 	);
 };
