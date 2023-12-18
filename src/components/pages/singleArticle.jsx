@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { getArticleById, changeArticleVotes } from "../../utils";
 import { useParams } from "react-router-dom";
 import Comments from "../comments"; 
+import AddComment from "../addComment";
+import RouteError from "../../routeError";
 
 
 const SingleArticle = () => {
@@ -85,7 +87,6 @@ const SingleArticle = () => {
   }
   else
 	return (
-    <div>
 		<div className="single-article-card">
 			<section className="single-article-header"><h3 className="single-article-title">{article.title}</h3>
 			<h4 className="single-article-author">Author: {article.author}</h4></section>
@@ -95,14 +96,17 @@ const SingleArticle = () => {
                 {article.body}  </p> 
                 <p> This article is about {article.topic} <br />
                 {article.comment_count} comments <br/>
-
-                
-		</div>
+                Posted on {day}/{month}/{year}  <br /> </p>
+                <div className="votes-box">{likes}
+                <button className="vote-button" onClick={() => handleClick(article_id)}>👍</button> 
+                <button className="vote-button" onClick={() => handleClickDown(article_id)}>👎</button> 
+                </div>
     <div className="comments-box">
       <Comments key={article.article_id} article_id={article_id}/>
       </div>
     </div>
 	);
 };
+
 
 export default SingleArticle
