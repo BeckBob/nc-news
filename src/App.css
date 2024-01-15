@@ -8,14 +8,21 @@
   color: aliceblue;
 }
 
+
+
+
 .article-card {
 	display: flex;
-  justify-content: center;
+  margin: auto;
 	flex-direction: column;
 	border: 2px solid rgb(211, 211, 255);
-	margin-bottom: 5vw;
+	margin-bottom: 0.5vw;
 	background-color: rgb(74, 80, 167);
 	color: rgb(0, 0, 0);
+  max-height: 25vw;
+  max-width: 15vw;
+  min-height: 400px;
+  min-width: 300px;
 }
 
 
@@ -108,17 +115,20 @@ nav {
 }
 
 .article-title{
-
+  font-size: large;
   background-color: rgb(181, 201, 255);
-  width: 50vw;
+  width: 15vw;
   padding: 10px;
   align-self: center;
   box-shadow: 10px 10px 10px black;
+  min-width: 350px;
+  min-height: 50px;
 }
 
 .article-list{
   display: flex;
   justify-content: center;
+  margin: auto;
   
 }
 
@@ -214,4 +224,11 @@ nav {
   max-width: 800px;
   min-width: 400px
 
+}
+
+.list-of-articles{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 5em;
 }
