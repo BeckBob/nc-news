@@ -15,12 +15,12 @@ const Navbar = () => {
 
     return ( 
         <div><nav>
-            <Link to={"/"} className="nav-text">Home</Link>
-            <Link className="nav-text">Users</Link>
-            <Link className="nav-text-user">User : weegembum</Link> 
+            <Link to={"/"} className="nav-text"> Home </Link>
+            <Link to={"/users"}className="nav-text"> Users </Link>
+            <Link to={"users/weegembum"}className="nav-text-user"> signed in: <br/> weegembump </Link> 
 
             </nav>
-        <nav>
+        <nav className="topics-nav">
             {topics.map((topic) => {
                 return <Link to={`/topics/${topic.slug}`}key={topic.slug} className="topic-link">{topic.slug}</Link>
             }) }

@@ -47,40 +47,42 @@ const ArticleList = (props) => {
             
 		});
     }, [sortBy, orderBy])
-    
+    console.log(sortBy, orderBy)
  
     if (isLoading){
         return <section className="loading-screen">loading...</section>
       }
 
     if (props.topic &&articleTopics.includes(props.topic)){
-        return (<section className="articles-container"><h2 className="topic-header">{props.topic}</h2>
+        return (<section className="articles-container"><h2 className="topic-header">{props.topic}</h2><div className="list-of-articles">
         {articles.map((article) => {if (article.topic === props.topic)
             return (
                 <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
                     <ArticleCard key={article.article_id} article={article} />
                 </Link> 
     )}
-    )}
+    )}</div>
                 </section>)}
     if (props.topic){
         return (<div><RouteError message={"topic doens't exist"}/></div>)
     }
       else
 return (<section className="articles-container">
-            <div><label htmlFor="sortby-category">sort by<select id="sortyby-category" name="sortby-category"> 
-            {topics.map((topic) => { return <option key={topic} value={topic} onClick={(e) => setSortBy(e.target.value)}>{topic}</option>})}
-                 </select></label><label htmlFor="orderby">order by<select id="orderby" name="orderby">
-                    <option key={"desc"} value={"desc"} onClick={(e) => setOrderBy(e.target.value)}>desc</option><option key={"asc"} value={"asc"} onClick={(e) => setOrderBy(e.target.value)}>asc</option>
+            <div className="sort-dropdown"><label htmlFor="sortby-category" >sort by<select id="sortyby-category" name="sortby-category"> 
+            {topics.map((topic) => { return <option key={topic} value={topic} onClick={(e) => setSortBy(topic)}>{topic}</option>})}
+                 </select></label>
+            <label htmlFor="orderby">order by<select id="orderby" name="orderbyname">
+                    <option key={"desc"} value={"desc"} onClick={(e) => setOrderBy("desc")}>desc</option><option key={"asc"} value={"asc"} onClick={(e) => setOrderBy("asc")}>asc</option>
         </select></label></div>
+        <div className="list-of-articles">
 {articles.map((article) => {
     return (
         <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
             <ArticleCard key={article.article_id} article={article} />
-        </Link>
+        </Link> 
     );
 })}
-</section>)
+</div></section>)
 
 }
 

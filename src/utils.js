@@ -69,6 +69,12 @@ export const getAllTopics = () => {
         return response.data})
 }
 
+export const getAllUsers = () => {
+    return api.get("/api/users").then((response) => 
+    {
+        return response.data})
+}
+
 
 export default getAllArticles
 

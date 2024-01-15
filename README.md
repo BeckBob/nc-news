@@ -5,12 +5,12 @@ There is a secondary nav bar with a list of category topics so you can view only
 
 link to banckend github repo - https://github.com/BeckBob/breaddit 
 
--copy the code from the github page https://github.com/BeckBob/nc-news Create a new public GitHub repository. Do not initialise the project with a readme, .gitignore or license.
+Clone this repo using 'git clone https://github.com/BeckBob/nc-news.git' Create a new public GitHub repository. Do not initialise the project with a readme, .gitignore or license.
 
 From your cloned local version of this project you'll want to push your code to your new repository using the following commands:
 
 git remote set-url origin YOUR_NEW_REPO_URL_HERE git branch -M main git push -u origin main
 
-You'll need to run npm install at this point.
+You'll need to run npm install at this point and then once that is done input npm run dev into your terminal
 
 minimum version of node rquired is v20.8.1
