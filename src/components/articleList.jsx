@@ -11,11 +11,15 @@ const ArticleList = (props) => {
     const articleTopics = ["coding", "football", "cooking"]
     const [sortBy, setSortBy] = useState("date")
     const [orderBy, setOrderBy] = useState("desc")
+    const [orderByToggle, setOrderByToggle] = useState("asc")
     
 
     useEffect(() => {
         setIsLoading(true)
 		getAllArticles().then(({body}) => {
+            if (orderBy === "asc") {setOrderByToggle("desc")} else {
+                setOrderByToggle("asc")
+            }
 
             const sortArray = (type, order) => {
                 const types = {
@@ -47,14 +51,14 @@ const ArticleList = (props) => {
             
 		});
     }, [sortBy, orderBy])
-    console.log(sortBy, orderBy)
+
  
     if (isLoading){
         return <section className="loading-screen">loading...</section>
       }
 
     if (props.topic &&articleTopics.includes(props.topic)){
-        return (<section className="articles-container"><h2 className="topic-header">{props.topic}</h2><div className="list-of-articles">
+        return (<section className="articles-container"><h2 className="topic-header">{props.topic.toUpperCase()}</h2><div className="list-of-articles">
         {articles.map((article) => {if (article.topic === props.topic)
             return (
                 <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
@@ -67,15 +71,16 @@ const ArticleList = (props) => {
         return (<div><RouteError message={"topic doens't exist"}/></div>)
     }
       else
-return (<section className="articles-container">
+    return (<section className="articles-container">
             <div className="sort-dropdown"><label htmlFor="sortby-category" >sort by<select id="sortyby-category" name="sortby-category"> 
-            {topics.map((topic) => { return <option key={topic} value={topic} onClick={(e) => setSortBy(topic)}>{topic}</option>})}
+            <option id="select" value="select" disabled="" selected="">{sortBy}</option>
+            {topics.map((topic) => { if(topic !== sortBy) return <option key={topic} value={topic} onClick={(e) => setSortBy(topic)}>{topic}</option>})}
                  </select></label>
             <label htmlFor="orderby">order by<select id="orderby" name="orderbyname">
-                    <option key={"desc"} value={"desc"} onClick={(e) => setOrderBy("desc")}>desc</option><option key={"asc"} value={"asc"} onClick={(e) => setOrderBy("asc")}>asc</option>
+                    <option key={"desc"} value={"desc"} onClick={(e) => setOrderBy(orderBy)}>{orderBy}</option><option key={"asc"} value={"asc"} onClick={(e) => setOrderBy(orderByToggle)}>{orderByToggle}</option>
         </select></label></div>
         <div className="list-of-articles">
-{articles.map((article) => {
+        {articles.map((article) => {
     return (
         <Link to={`/articles/${article.article_id}`} key={article.article_id} className="article-link">
             <ArticleCard key={article.article_id} article={article} />

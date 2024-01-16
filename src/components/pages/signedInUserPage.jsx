@@ -11,7 +11,7 @@ const UserPage = () => {
     getAllUsers().then(({users}) => {
             users.map((user) => 
                 {
-                    console.log(user)
+                
             if (user.username === "weegembump") 
             {setSingleUser(user)}})
             setLoading(false)
