@@ -72,7 +72,7 @@ const ArticleList = (props) => {
     }
       else
     return (<section className="articles-container">
-            <div className="sort-dropdown"><label htmlFor="sortby-category" >sort by<select id="sortyby-category" name="sortby-category"> 
+            <div className="sort-dropdown"><label htmlFor="sortby-category" >sort by<select id="sortyby-category-id" name="sortby-category-name"> 
             <option id="select" value="select" disabled="" selected="">{sortBy}</option>
             {topics.map((topic) => { if(topic !== sortBy) return <option key={topic} value={topic} onClick={(e) => setSortBy(topic)}>{topic}</option>})}
                  </select></label>

@@ -16,7 +16,7 @@ const AddComment = (props) => {
     } 
 
     useEffect(() => {
-        console.log(errorMessage, "<----")
+    
     }, [errorMessage])
 
     const handleSubmit = (event) => {
@@ -39,7 +39,7 @@ const AddComment = (props) => {
                 addCommentToArticle(article_id, input).catch((err) => {
                     const newErrorMessage = err.msg
                     
-                    console.log(newErrorMessage)
+            
                     setErrorMessage({message: newErrorMessage})
                     
                     
@@ -52,7 +52,7 @@ const AddComment = (props) => {
     return  (
     
     <form onSubmit = {handleSubmit}>  
-    <label htmlFor='commentInput'>
+    <label  htmlFor='commentInput'>
         <input type='text' 
         placeholder='Type comment here...' 
         id='comment-input'
