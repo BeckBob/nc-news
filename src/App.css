@@ -173,8 +173,10 @@ nav {
 }
 
 .single-article-title{
-  font-size: 2.5vw;
+  font-size: 3vw;
   padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-bottom: 2%;
   
 }
@@ -417,5 +419,8 @@ button{
     width: 400px;
     height: 400px;
    
+  }
+  .single-article-author{
+    font-size: 25px;
   }
 }
